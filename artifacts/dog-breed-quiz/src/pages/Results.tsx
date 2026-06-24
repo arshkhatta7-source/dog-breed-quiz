@@ -104,6 +104,12 @@ export default function Results() {
           ))}
         </div>
 
+        <div className="text-center mb-6">
+          <Link href="/browse" className="text-sm text-primary hover:underline font-medium" data-testid="results-browse-all">
+            Browse All 120 Breeds →
+          </Link>
+        </div>
+
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-8 border-t border-border">
           <Button
             onClick={handleShare}

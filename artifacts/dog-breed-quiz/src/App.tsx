@@ -5,6 +5,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 
 import { Nav } from "@/components/Nav";
+import { CookieBanner } from "@/components/CookieBanner";
+import { CompareProvider } from "@/context/CompareContext";
+
 import Home from "@/pages/Home";
 import Quiz from "@/pages/Quiz";
 import Results from "@/pages/Results";
@@ -12,7 +15,8 @@ import BreedDetail from "@/pages/BreedDetail";
 import About from "@/pages/About";
 import BrowseBreeds from "@/pages/BrowseBreeds";
 import Compare from "@/pages/Compare";
-import { CompareProvider } from "@/context/CompareContext";
+import Privacy from "@/pages/Privacy";
+import Contact from "@/pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -29,9 +33,12 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/browse" component={BrowseBreeds} />
           <Route path="/compare" component={Compare} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/contact" component={Contact} />
           <Route component={NotFound} />
         </Switch>
       </main>
+      <CookieBanner />
     </div>
   );
 }
