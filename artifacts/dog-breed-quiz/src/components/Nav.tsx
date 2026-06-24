@@ -13,6 +13,7 @@ export function Nav() {
   const links = [
     { href: "/", label: "Home" },
     { href: "/quiz", label: "Take Quiz" },
+    { href: "/browse", label: "Browse Breeds" },
     { href: "/about", label: "About" },
   ];
 

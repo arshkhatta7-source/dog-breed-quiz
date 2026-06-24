@@ -10,6 +10,7 @@ import Quiz from "@/pages/Quiz";
 import Results from "@/pages/Results";
 import BreedDetail from "@/pages/BreedDetail";
 import About from "@/pages/About";
+import BrowseBreeds from "@/pages/BrowseBreeds";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function Router() {
           <Route path="/results" component={Results} />
           <Route path="/breed/:breedSlug" component={BreedDetail} />
           <Route path="/about" component={About} />
+          <Route path="/browse" component={BrowseBreeds} />
           <Route component={NotFound} />
         </Switch>
       </main>
