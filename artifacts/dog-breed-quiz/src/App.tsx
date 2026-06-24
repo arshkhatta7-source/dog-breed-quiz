@@ -11,6 +11,8 @@ import Results from "@/pages/Results";
 import BreedDetail from "@/pages/BreedDetail";
 import About from "@/pages/About";
 import BrowseBreeds from "@/pages/BrowseBreeds";
+import Compare from "@/pages/Compare";
+import { CompareProvider } from "@/context/CompareContext";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,7 @@ function Router() {
           <Route path="/breed/:breedSlug" component={BreedDetail} />
           <Route path="/about" component={About} />
           <Route path="/browse" component={BrowseBreeds} />
+          <Route path="/compare" component={Compare} />
           <Route component={NotFound} />
         </Switch>
       </main>
@@ -38,7 +41,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
+          <CompareProvider>
+            <Router />
+          </CompareProvider>
         </WouterRouter>
         <Toaster />
       </TooltipProvider>
