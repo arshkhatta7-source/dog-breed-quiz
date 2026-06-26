@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dogbreedquiz.replit.app/sitemap.xml
+Sitemap: https://mode-switcher--arshkhatta7.replit.app/sitemap.xml
