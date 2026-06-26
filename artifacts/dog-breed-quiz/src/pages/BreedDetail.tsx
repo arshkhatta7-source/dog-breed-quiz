@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useSEO } from "../hooks/useSEO";
 import { useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { BreedImage } from "../components/BreedImage";
 
 const naturalTitles: Record<string, string> = {
   "german-shepherd":    "German Shepherd Dog — Temperament, Care and Is It Right For You?",
@@ -151,13 +152,7 @@ export default function BreedDetail() {
     <div className="min-h-screen pb-20">
       {/* Hero image */}
       <div className="relative h-[40vh] md:h-[55vh] w-full bg-muted">
-        <img
-          src={breed.imageUrl}
-          alt={`${breed.name} dog breed`}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-          onError={(e) => { (e.target as HTMLImageElement).src = "https://place.dog/800/500"; }}
-        />
+        <BreedImage breedId={breed.id} breedName={breed.name} />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         <div className="absolute top-4 left-4 z-10">
           <Button asChild variant="secondary" size="icon" className="rounded-full bg-background/60 backdrop-blur-md hover:bg-background/80">
@@ -307,13 +302,7 @@ export default function BreedDetail() {
                   <Link key={similar.id} href={`/breed/${similar.id}`}>
                     <div className="group bg-muted/40 border border-border rounded-2xl overflow-hidden hover:border-primary hover:shadow-md transition-all cursor-pointer">
                       <div className="relative h-32 bg-muted overflow-hidden">
-                        <img
-                          src={similar.imageUrl}
-                          alt={similar.name}
-                          loading="lazy"
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                          onError={(e) => { (e.target as HTMLImageElement).src = "https://place.dog/300/200"; }}
-                        />
+                        <BreedImage breedId={similar.id} breedName={similar.name} />
                       </div>
                       <div className="p-3">
                         <p className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">{similar.name}</p>

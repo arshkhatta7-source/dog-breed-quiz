@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, GitCompareArrows } from "lucide-react";
 import { useCompare } from "../context/CompareContext";
+import { BreedImage } from "../components/BreedImage";
 
 type SizeFilter = "all" | "Small" | "Medium" | "Large" | "Giant";
 type EnergyFilter = "all" | "Low" | "Moderate" | "High" | "Very High";
@@ -224,14 +225,7 @@ export default function BrowseBreeds() {
                   >
                     <Link href={`/breed/${breed.id}`} className="block">
                       <div className="relative h-44 bg-muted overflow-hidden shrink-0">
-                        <img
-                          src={breed.imageUrl}
-                          alt={breed.name}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = "https://place.dog/300/200";
-                          }}
-                        />
+                        <BreedImage breedId={breed.id} breedName={breed.name} />
                         {breed.isProtectionBreed && (
                           <div className="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">
                             Guard
