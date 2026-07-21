@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import type { Breed } from "../data/breeds";
 import { motion } from "framer-motion";
-import { useBreedImage } from "../hooks/useBreedImage";
+import { getBreedImageUrl, BREED_IMAGE_FALLBACK } from "../hooks/useBreedImage";
 
 interface BreedCardProps {
   breed: Breed;
@@ -16,7 +16,6 @@ interface BreedCardProps {
 export function BreedCard({ breed, score, matchReasons, rank }: BreedCardProps) {
   const labels = ["Your Perfect Match", "Runner Up", "Also Great"];
   const label = labels[rank - 1] || "Great Choice";
-  const { imageUrl, loading } = useBreedImage(breed.id);
 
   return (
     <motion.div
@@ -30,17 +29,13 @@ export function BreedCard({ breed, score, matchReasons, rank }: BreedCardProps) 
       >
         <div className="md:flex">
           <div className="relative h-64 md:h-auto md:w-2/5 shrink-0 overflow-hidden bg-muted">
-            {loading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-              </div>
-            )}
             <img
-              src={imageUrl}
+              src={getBreedImageUrl(breed.name, "600x400")}
               alt={`${breed.name} dog`}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${loading ? "opacity-0" : "opacity-100"}`}
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://place.dog/400/300";
+                const el = e.target as HTMLImageElement;
+                if (el.src !== BREED_IMAGE_FALLBACK) el.src = BREED_IMAGE_FALLBACK;
               }}
             />
             <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full font-bold text-sm shadow-sm flex items-center gap-1.5">

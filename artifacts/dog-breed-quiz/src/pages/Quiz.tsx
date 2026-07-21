@@ -158,7 +158,9 @@ export default function Quiz() {
     if (currentStep < questions.length - 1) {
       setTimeout(() => setCurrentStep(prev => prev + 1), 280);
     } else {
-      sessionStorage.setItem("quizAnswers", JSON.stringify(newAnswers));
+      // Save to both localStorage (persistent, works on deployed sites) and sessionStorage
+      try { localStorage.setItem("quizAnswers", JSON.stringify(newAnswers)); } catch { /* ignore */ }
+      try { sessionStorage.setItem("quizAnswers", JSON.stringify(newAnswers)); } catch { /* ignore */ }
       setTimeout(() => setLocation("/results"), 280);
     }
   };

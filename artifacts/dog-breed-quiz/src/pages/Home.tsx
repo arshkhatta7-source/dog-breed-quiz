@@ -5,6 +5,7 @@ import { useSEO } from "../hooks/useSEO";
 import { breeds } from "../data/breeds";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { getBreedImageUrl, BREED_IMAGE_FALLBACK } from "../hooks/useBreedImage";
 
 const POPULAR_IDS = [
   "golden-retriever",
@@ -174,11 +175,14 @@ export default function Home() {
                   <div className="group bg-card border-2 border-border rounded-2xl overflow-hidden hover:border-primary hover:shadow-md transition-all cursor-pointer">
                     <div className="relative h-36 md:h-44 bg-muted overflow-hidden">
                       <img
-                        src={breed!.imageUrl}
+                        src={getBreedImageUrl(breed!.name)}
                         alt={breed!.name}
                         loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        onError={(e) => { (e.target as HTMLImageElement).src = "https://place.dog/300/200"; }}
+                        onError={(e) => {
+                          const el = e.target as HTMLImageElement;
+                          if (el.src !== BREED_IMAGE_FALLBACK) el.src = BREED_IMAGE_FALLBACK;
+                        }}
                       />
                     </div>
                     <div className="p-4">

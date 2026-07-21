@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useLocation, Link } from "wouter";
 import { breeds, type Breed } from "../data/breeds";
 import { useCompare } from "../context/CompareContext";
+import { getBreedImageUrl, BREED_IMAGE_FALLBACK } from "../hooks/useBreedImage";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -222,11 +223,12 @@ export default function Compare() {
                     >
                       <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden bg-muted shrink-0 mx-auto">
                         <img
-                          src={breed.imageUrl}
+                          src={getBreedImageUrl(breed.name, "200x200")}
                           alt={breed.name}
                           className="absolute inset-0 w-full h-full object-cover"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = "https://place.dog/200/200";
+                            const el = e.target as HTMLImageElement;
+                            if (el.src !== BREED_IMAGE_FALLBACK) el.src = BREED_IMAGE_FALLBACK;
                           }}
                         />
                       </div>
