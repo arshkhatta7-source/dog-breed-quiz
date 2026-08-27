@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import type { Breed } from "../data/breeds";
 import { motion } from "framer-motion";
-import { getBreedImageUrl, BREED_IMAGE_FALLBACK } from "../hooks/useBreedImage";
+import { BreedImage } from "./BreedImage";
 
 interface BreedCardProps {
   breed: Breed;
@@ -29,15 +29,7 @@ export function BreedCard({ breed, score, matchReasons, rank }: BreedCardProps) 
       >
         <div className="md:flex">
           <div className="relative h-64 md:h-auto md:w-2/5 shrink-0 overflow-hidden bg-muted">
-            <img
-              src={getBreedImageUrl(breed.name, "600x400")}
-              alt={`${breed.name} dog`}
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-              onError={(e) => {
-                const el = e.target as HTMLImageElement;
-                if (el.src !== BREED_IMAGE_FALLBACK) el.src = BREED_IMAGE_FALLBACK;
-              }}
-            />
+            <BreedImage breedName={breed.name} size="600x400" className="absolute inset-0 transition-all duration-500 group-hover:scale-105" />
             <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full font-bold text-sm shadow-sm flex items-center gap-1.5">
               <span className="text-primary">#{rank}</span>
               <span className="text-foreground">{label}</span>
