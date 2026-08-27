@@ -1,0 +1,1 @@
+- [Breed image delivery](breed-image-delivery.md) — avoid Unsplash Source for per-breed images; it can return the same cached result for every query.
