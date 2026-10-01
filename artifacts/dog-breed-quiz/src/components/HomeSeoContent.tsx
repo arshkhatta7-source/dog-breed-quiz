@@ -91,12 +91,6 @@ export function HomeSeoContent() {
             </Link>,
             but the photos are there to help you explore, not to score a guessing game.
           </p>
-          <p>
-            Similarly, this is not an AKC dog breed quiz. The American Kennel Club is an independent
-            organization; DogBreedQuiz is not affiliated with or endorsed by the AKC. Our tool is an
-            independent educational aid for comparing lifestyle fit, and it should not be mistaken for
-            an official kennel-club assessment or veterinary advice.
-          </p>
         </section>
 
         <section className="space-y-3">

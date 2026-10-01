@@ -51,16 +51,28 @@ const faqs = [
     a: "Golden Retrievers, Labrador Retrievers, Beagles, Cavalier King Charles Spaniels, and Boxers consistently rank among the best family dogs with children. Our quiz factors in your household composition and prioritizes breeds known for patience and gentleness with kids."
   },
   {
-    q: "Is this an AKC dog breed quiz?",
-    a: "No. DogBreedQuiz is an independent lifestyle-matching tool and is not affiliated with or endorsed by the American Kennel Club (AKC). It helps you compare breed traits with your living situation; it is not an official AKC quiz."
-  },
-  {
     q: "Is this a guess the dog breed quiz with pictures?",
     a: "No. A guess the dog breed quiz or name that dog breed quiz tests how well you can identify dogs from photos. DogBreedQuiz works in the opposite direction: you answer lifestyle questions, then receive breed recommendations. Browse breed pages to see photos and learn how breeds differ."
   },
   {
     q: "What do my dog breed quiz results mean?",
     a: "Your results are a shortlist of breeds whose common needs and traits appear to fit your answers. Use the match reasons to compare energy, grooming, size, experience, and household fit, then research individual dogs and speak with reputable shelters, rescues, or breeders."
+  },
+  {
+    q: "How do I find the best dog breed for my lifestyle?",
+    a: "Start by considering your daily schedule, home, exercise routine, dog-care experience, grooming preferences, and budget. Answer the quiz questions honestly, review the match reasons, and research several breeds before meeting individual dogs."
+  },
+  {
+    q: "What questions does the dog breed quiz ask?",
+    a: "The quiz asks about living space, activity level, time a dog may spend alone, experience with dogs, grooming, budget, children, and other pets. Your answers are used to compare practical lifestyle factors with breed traits."
+  },
+  {
+    q: "Does the dog breed quiz show pictures?",
+    a: "The quiz focuses on lifestyle matching. You can browse breed profiles with dog photos and information after taking the quiz, but the photos are not used as a breed-identification test."
+  },
+  {
+    q: "Can a dog breed quiz guarantee I will choose the right dog?",
+    a: "No online quiz can guarantee a perfect match or predict an individual dog's behavior. Use your results as a starting shortlist, then learn about each dog's individual health, history, temperament, and care needs with help from reputable shelters, rescues, breeders, or veterinarians."
   }
 ];
 
@@ -107,6 +119,8 @@ const applicationSchema = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${SITE_URL}/#faq`,
+  "url": SITE_URL,
   "mainEntity": faqs.map(({ q, a }) => ({
     "@type": "Question",
     "name": q,
@@ -218,11 +232,11 @@ export default function Home() {
       <HomeSeoContent />
 
       {/* FAQ */}
-      <section className="py-20 px-4" aria-label="Frequently asked questions">
+      <section className="py-20 px-4" aria-labelledby="dog-breed-quiz-faqs">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">Frequently Asked Questions</h2>
-            <p className="text-muted-foreground">Everything you need to know about DogBreedQuiz.</p>
+            <h2 id="dog-breed-quiz-faqs" className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">Dog Breed Quiz FAQs</h2>
+            <p className="text-muted-foreground">Clear answers about the quiz, breed matches, and choosing a dog.</p>
           </div>
           <div className="bg-card border border-border rounded-2xl px-6 shadow-sm">
             {faqs.map((faq, i) => <FAQItem key={i} q={faq.q} a={faq.a} />)}
