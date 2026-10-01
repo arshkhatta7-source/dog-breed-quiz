@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { useSEO } from "../hooks/useSEO";
+import { SITE_URL, useSEO } from "../hooks/useSEO";
 import { useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { BreedImage } from "../components/BreedImage";
@@ -48,7 +48,7 @@ function getPageTitle(breed: Breed): string {
 }
 
 function getMetaDesc(breed: Breed): string {
-  return `Learn everything about the ${breed.name}: temperament, size, grooming, energy level, lifespan, cost, and whether it matches your lifestyle. Compare with 120 breeds on DogBreedQuiz.`;
+  return `Explore the ${breed.name}: temperament, size, grooming, exercise, lifespan, and care. See whether this dog may fit your lifestyle.`;
 }
 
 function getSimilarBreeds(breed: Breed): Breed[] {
@@ -128,8 +128,8 @@ export default function BreedDetail() {
     "@type": "Article",
     "headline": pageTitle,
     "description": pageDesc,
-    "url": `https://dogbreedquiz.replit.app/breed/${breed.id}`,
-    "publisher": { "@type": "Organization", "name": "DogBreedQuiz", "url": "https://dogbreedquiz.replit.app" },
+    "url": `${SITE_URL}/breed/${breed.id}`,
+    "publisher": { "@type": "Organization", "name": "DogBreedQuiz", "url": SITE_URL },
   } : undefined;
 
   useSEO({ title: pageTitle, description: pageDesc, canonical, schema });

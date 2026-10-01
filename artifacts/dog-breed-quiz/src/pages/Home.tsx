@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { useSEO } from "../hooks/useSEO";
+import { SITE_URL, useSEO } from "../hooks/useSEO";
 import { breeds } from "../data/breeds";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { BreedImage } from "../components/BreedImage";
+import { HomeSeoContent } from "../components/HomeSeoContent";
 
 const POPULAR_IDS = [
   "golden-retriever",
@@ -48,6 +49,18 @@ const faqs = [
   {
     q: "What dog breeds are good for families with kids?",
     a: "Golden Retrievers, Labrador Retrievers, Beagles, Cavalier King Charles Spaniels, and Boxers consistently rank among the best family dogs with children. Our quiz factors in your household composition and prioritizes breeds known for patience and gentleness with kids."
+  },
+  {
+    q: "Is this an AKC dog breed quiz?",
+    a: "No. DogBreedQuiz is an independent lifestyle-matching tool and is not affiliated with or endorsed by the American Kennel Club (AKC). It helps you compare breed traits with your living situation; it is not an official AKC quiz."
+  },
+  {
+    q: "Is this a guess the dog breed quiz with pictures?",
+    a: "No. A guess the dog breed quiz or name that dog breed quiz tests how well you can identify dogs from photos. DogBreedQuiz works in the opposite direction: you answer lifestyle questions, then receive breed recommendations. Browse breed pages to see photos and learn how breeds differ."
+  },
+  {
+    q: "What do my dog breed quiz results mean?",
+    a: "Your results are a shortlist of breeds whose common needs and traits appear to fit your answers. Use the match reasons to compare energy, grooming, size, experience, and household fit, then research individual dogs and speak with reputable shelters, rescues, or breeders."
   }
 ];
 
@@ -76,13 +89,19 @@ const homepageSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "DogBreedQuiz",
-  "url": "https://dogbreedquiz.replit.app",
-  "description": "Free dog breed matchmaker quiz — find your perfect dog breed match across 120 breeds.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://dogbreedquiz.replit.app/browse?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "url": SITE_URL,
+  "description": "A free dog breed quiz that compares your lifestyle with the needs and traits of dog breeds.",
+  "inLanguage": "en"
+};
+
+const applicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "DogBreedQuiz",
+  "url": SITE_URL,
+  "description": "Answer 12 lifestyle questions and compare dog breeds to find options that may fit your home and routine.",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Any"
 };
 
 const faqSchema = {
@@ -97,10 +116,10 @@ const faqSchema = {
 
 export default function Home() {
   useSEO({
-    title: "DogBreedQuiz — Find Your Perfect Dog Breed Match (Free Quiz)",
-    description: "Take our free 12-question quiz to find the perfect dog breed for your lifestyle. Compare 120+ breeds including Golden Retrievers, Poodles, French Bulldogs, and more.",
+    title: "Dog Breed Quiz: Find Your Ideal Match | DogBreedQuiz",
+    description: "Take our free dog breed quiz: answer 12 questions about your home, activity, experience, and budget to compare breeds and find a thoughtful match in minutes.",
     canonical: "/",
-    schema: { "@context": "https://schema.org", "@graph": [homepageSchema, faqSchema] },
+    schema: { "@context": "https://schema.org", "@graph": [homepageSchema, applicationSchema, faqSchema] },
   });
 
   const popularBreeds = POPULAR_IDS.map(id => breeds.find(b => b.id === id)).filter(Boolean);
@@ -116,7 +135,7 @@ export default function Home() {
               120 Dog Breeds · Free Quiz
             </div>
             <h1 className="text-5xl md:text-7xl font-bold font-serif text-foreground mb-6 leading-tight">
-              Find Your Perfect <br /><span className="text-primary">Dog Breed</span> Match.
+              Dog Breed Quiz: <br /><span className="text-primary">Find Your Perfect</span> Match.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
               Answer 12 questions about your lifestyle and we'll match you with the dog breeds most likely to thrive in your home — with specific reasons why.
@@ -195,6 +214,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HomeSeoContent />
 
       {/* FAQ */}
       <section className="py-20 px-4" aria-label="Frequently asked questions">

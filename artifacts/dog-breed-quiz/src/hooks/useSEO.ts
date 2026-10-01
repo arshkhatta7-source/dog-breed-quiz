@@ -7,7 +7,7 @@ interface SEOOptions {
   schema?: object;
 }
 
-const BASE_URL = "https://dogbreedquiz.replit.app";
+export const SITE_URL = "https://dog-breed-quiz-3c8.pages.dev";
 
 export function useSEO({ title, description, canonical, schema }: SEOOptions) {
   useEffect(() => {
@@ -19,7 +19,7 @@ export function useSEO({ title, description, canonical, schema }: SEOOptions) {
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
 
-    const canonicalHref = canonical ? `${BASE_URL}${canonical}` : `${BASE_URL}${window.location.pathname}`;
+    const canonicalHref = canonical ? `${SITE_URL}${canonical}` : `${SITE_URL}${window.location.pathname}`;
     setLink("canonical", canonicalHref);
     setMeta("property", "og:url", canonicalHref);
 

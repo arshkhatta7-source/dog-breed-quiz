@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { useSEO } from "../hooks/useSEO";
+import { SITE_URL, useSEO } from "../hooks/useSEO";
 
 export default function Privacy() {
   useSEO({
@@ -28,8 +28,8 @@ export default function Privacy() {
               <h2 className="text-2xl font-bold font-serif text-foreground mb-3">1. Introduction</h2>
               <p>
                 Welcome to DogBreedQuiz ("we," "us," or "our"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website at{" "}
-                <a href="https://dogbreedquiz.replit.app" className="text-primary hover:underline">
-                  dogbreedquiz.replit.app
+                <a href={SITE_URL} className="text-primary hover:underline">
+                  dog-breed-quiz-3c8.pages.dev
                 </a>.
               </p>
             </section>
